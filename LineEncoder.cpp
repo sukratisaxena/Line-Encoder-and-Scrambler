@@ -63,11 +63,11 @@ void NRZ_L(string s)
     for(int i=0;i<s.length();i++)
     {
         delay(100);
-        if(s[i]=='0')
+        if(s[i]=='1')
         {
             line(x,280,x+50,280);
             settextstyle(8, 0, 3);
-            outtextxy(x+30, 70, "0");
+            outtextxy(x+30, 70, "1");
 
             if(one == 1)
             {
@@ -82,7 +82,7 @@ void NRZ_L(string s)
         {
             line(x,80,x+50,80);
             settextstyle(8, 0, 3);
-            outtextxy(x+30, 70, "1");
+            outtextxy(x+30, 70, "0");
             if(zero == 1)
             {
                 line(x,80,x,280);
@@ -189,7 +189,7 @@ void NRZ_I(string s)
             x+=50;
     }}}
     settextstyle(8, 0, 5);
-    outtextxy(400, 385, "NRZ_L");
+    outtextxy(400, 385, "NRZ_I");
     cout << endl;
 }
 void Manch(string s)
@@ -580,7 +580,7 @@ void AMI(string s)
                 line(x,80,x+50,80);
                 x+=50;
                 line(x,80,x,180);
-                cout << "+ ";
+                cout << "+1 ";
             }
             else
             {
@@ -588,7 +588,7 @@ void AMI(string s)
                 line(x,280,x+50,280);
                 x+=50;
                 line(x,280,x,180);
-                cout << "- ";
+                cout << "-1 ";
             }
             settextstyle(8, 0, 3);
             outtextxy(x-15,70, "1");
@@ -671,6 +671,9 @@ int mainplot()
     outtextxy(30, 70, "+A");
     settextstyle(8, 0, 3);
     outtextxy(30, 310, "-A");
+    settextstyle(8, 0, 3);
+    outtextxy(960, 210, "Time");
+    outtextxy(970, 193, ">");
     setlinestyle(1,0,0.5);
     int x = 30;
     for(int i=0;i<18;i++)
