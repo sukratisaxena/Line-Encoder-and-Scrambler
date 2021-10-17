@@ -489,7 +489,7 @@ void HDB3(string s){
                outtextxy(x-15,70, "0");
                line(x,180,x,80);
                settextstyle(8, 0, 3);
-               outtextxy(x+25,230, "V");
+               outtextxy(x+25,130, "V");
                line(x,80,x+50,80);
                x+=50;
                line(x,80,x,180);
@@ -701,7 +701,7 @@ int main()
         cleardevice();
         Choice1:
         cout << "\n------------------------------------------------------------------------\n";
-        cout << "\nChoose the type of string:\n0. Quit\n1. A random string\n2. A random 16 bit sequence with fixed-subsequences\n3. A Custom User input string" <<endl;
+        cout << "\nChoose the type of string:\n0. Quit\n1. A random string\n2. A random sequence with fixed-subsequences of 4/8 consecutive 0's\n3. A Custom User input string" <<endl;
         cout << "\nEnter your choice: ";
         int x1;
         cin >> x1;
@@ -757,29 +757,54 @@ int main()
         else if(x1==2)
         {
             mainplot();
-            int n=16;
+            int n;
+            n = num();
             int arr[n];
-            for(int i=0;i<4;i++)
+            string s;
+            for(int i=0;i<n;i++)
+                {
+                    arr[i]=rand()%2;
+                }
+            for (int i: arr) {
+                    s += to_string(i);
+                }
+            if(n<8)
             {
-                arr[i] = 0;
+                int k = rand()% (n-4);
+                {
+                    s.replace(k,4,"0000");
+                }
             }
-            for(int i=4;i<8;i++)
+            else if(n > 8)
             {
-                arr[i]=rand()%2;
-            }
-            for(int i=8;i<16;i++)
-            {
-                arr[i]=0;
+                int r = rand()%2;
+                if(r%2==0)
+                {
+                   int k = rand()% (n-4);
+                {
+                    s.replace(k,4,"0000");
+                }
+                int t = rand()% (n-4);
+                {
+                    s.replace(t,4,"0000");
+                }
+                }
+                else
+                {
+                        int k = rand()% (n-8);
+                    {
+                        s.replace(k,8,"00000000");
+                    }
+                    int t = rand()% (n-4);
+                    {
+                        s.replace(t,4,"0000");
+                    }
+                }
             }
             cout << "The sequence is: ";
             for(int i=0;i<n;i++)
             {
-                cout << arr[i] <<  " ";
-            }
-            cout << endl;
-            string s;
-            for (int i: arr) {
-                s += to_string(i);
+                cout << s[i] << " ";
             }
             string arr1 = LPS(s);
             cout << "LPS is: " << arr1 << endl;
